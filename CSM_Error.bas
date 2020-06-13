@@ -31,6 +31,6 @@ Public Sub ShowErrorMessage(ByVal vstrSource As String, Optional ByVal vstrMessa
             MsgBox strPrompt, vbOKOnly + vbCritical, App.Title, vstrHelpFile, vlngContext
         End If
         
-        CSM_ApplicationLog.WriteLogEvent strToLog, vbLogEventTypeError
+        CSM_ApplicationLog.WriteLogEvent strToLog, vbLogEventTypeError, pParametro.LogAccion_Enabled
     End If
 End Sub

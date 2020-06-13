@@ -54,7 +54,7 @@ Public Sub InitLogging(Optional ByVal Path As String = "", Optional ByVal FileNa
                         If Err.Number <> 0 Then
                             'MsgBox "Error Deleting File: " & strDirResult, vbExclamation, App.Title
                         Else
-                            WriteLogEvent "Old Log File Deleted: " & Path & DirResult, vbLogEventTypeInformation
+                            WriteLogEvent "Old Log File Deleted: " & Path & DirResult, vbLogEventTypeInformation, True
                         End If
                         On Error GoTo 0
                     End If
@@ -85,11 +85,11 @@ Private Sub CreateFileHeader()
     Close #FileNumber
 End Sub
 
-Public Sub WriteLogEvent(ByVal Description As String, ByVal LogEventType As LogEventTypeConstants)
+Public Sub WriteLogEvent(ByVal Description As String, ByVal LogEventType As LogEventTypeConstants, ByVal LogEnabled As Boolean)
     Dim FileNumber As Integer
     Dim LogEventTypeSymbol As String
     
-    If Not pIsCompiled Then
+    If Not (pIsCompiled And LogEnabled) Then
         Exit Sub
     End If
     

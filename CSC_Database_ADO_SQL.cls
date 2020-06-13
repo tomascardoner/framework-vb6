@@ -390,7 +390,7 @@ Public Function Connect() As Long
 
     Screen.MousePointer = vbHourglass
     
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: INIT", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 
     If pTrapErrors Then
         On Error GoTo ErrorHandler
@@ -411,7 +411,7 @@ Public Function Connect() As Long
     End With
     
     Connect = -1
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: DONE", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     Screen.MousePointer = vbDefault
     Exit Function
     
@@ -469,7 +469,7 @@ End Function
 Public Function Disconnect() As Boolean
 RETRY:
     If Not mConnection Is Nothing Then
-        WriteLogEvent "Closing Database Connection", vbLogEventTypeInformation
+        WriteLogEvent "Closing Database Connection", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         Select Case mConnection.State
             Case adStateClosed
             Case adStateOpen
