@@ -12,7 +12,7 @@ Public Enum csComboPosition
     cscpCurrentOrFirstIfUniqueIgnoringPreloaded = 8
     cscpCurrentOrLast = 9
     cscpItemOrNone = 10
-    cscpItemOrfirst = 11
+    cscpItemOrFirst = 11
     cscpItemOrFirstIfUnique = 12
     cscpItemOrFirstIfUniqueIgnoringPreloaded = 13
     cscpItemOrLast = 14
