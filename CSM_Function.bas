@@ -16,6 +16,10 @@ Public Function IfIsNull_Two(ByVal CheckValue As Variant) As Variant
     IfIsNull_Two = IIf(IsNull(CheckValue), 2, CheckValue)
 End Function
 
+Public Function IfIsNull_Space(ByVal CheckValue As Variant) As String
+    IfIsNull_Space = IIf(IsNull(CheckValue), " ", CheckValue)
+End Function
+
 Public Function IfIsNull_ZeroLenghtString(ByVal CheckValue As Variant) As Variant
     IfIsNull_ZeroLenghtString = IIf(IsNull(CheckValue), "", CheckValue)
 End Function
@@ -118,6 +122,6 @@ Public Function CheckBoxValue2ComboboxListIndex(ByVal CheckBoxValue As CheckBoxC
     End Select
 End Function
 
-Public Function BooleanToChecked(ByVal Value As Boolean) As CheckBoxConstants
-    BooleanToChecked = IIf(Value, vbChecked, vbUnchecked)
+Public Function BooleanToChecked(ByVal value As Boolean) As CheckBoxConstants
+    BooleanToChecked = IIf(value, vbChecked, vbUnchecked)
 End Function
