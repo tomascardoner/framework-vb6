@@ -61,8 +61,8 @@ Public Property Get Provider() As String
     Provider = mProvider
 End Property
 
-Public Property Let Provider(ByVal Value As String)
-    mProvider = Value
+Public Property Let Provider(ByVal value As String)
+    mProvider = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -71,8 +71,8 @@ Public Property Get ConnectionTimeout() As Long
     ConnectionTimeout = mConnectionTimeout
 End Property
 
-Public Property Let ConnectionTimeout(ByVal Value As Long)
-    mConnectionTimeout = Value
+Public Property Let ConnectionTimeout(ByVal value As Long)
+    mConnectionTimeout = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -81,8 +81,8 @@ Public Property Get CommandTimeout() As Long
     CommandTimeout = mCommandTimeout
 End Property
 
-Public Property Let CommandTimeout(ByVal Value As Long)
-    mCommandTimeout = Value
+Public Property Let CommandTimeout(ByVal value As Long)
+    mCommandTimeout = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -91,8 +91,8 @@ Public Property Get CDataSourcesNames() As Collection
     Set CDataSourcesNames = mCDataSourcesNames
 End Property
 
-Public Property Let CDataSourcesNames(ByVal Value As Collection)
-    Set mCDataSourcesNames = Value
+Public Property Let CDataSourcesNames(ByVal value As Collection)
+    Set mCDataSourcesNames = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -101,8 +101,8 @@ Public Property Get CDataSources() As Collection
     Set CDataSources = mCDataSources
 End Property
 
-Public Property Let CDataSources(ByVal Value As Collection)
-    Set mCDataSources = Value
+Public Property Let CDataSources(ByVal value As Collection)
+    Set mCDataSources = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -111,8 +111,8 @@ Public Property Get DataSource() As String
     DataSource = mDataSource
 End Property
 
-Public Property Let DataSource(ByVal Value As String)
-    mDataSource = Value
+Public Property Let DataSource(ByVal value As String)
+    mDataSource = value
 End Property
 
 Public Property Get DataSourceFolder() As String
@@ -125,8 +125,8 @@ Public Property Get UserID() As String
     UserID = mUserID
 End Property
 
-Public Property Let UserID(ByVal Value As String)
-    mUserID = Value
+Public Property Let UserID(ByVal value As String)
+    mUserID = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -135,8 +135,8 @@ Public Property Get Password() As String
     Password = mPassword
 End Property
 
-Public Property Let Password(ByVal Value As String)
-    mPassword = Value
+Public Property Let Password(ByVal value As String)
+    mPassword = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -145,8 +145,8 @@ Public Property Get Database() As String
     Database = mDatabase
 End Property
 
-Public Property Let Database(ByVal Value As String)
-    mDatabase = Value
+Public Property Let Database(ByVal value As String)
+    mDatabase = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -155,8 +155,8 @@ Public Property Get DatabasePassword() As String
     DatabasePassword = mDatabasePassword
 End Property
 
-Public Property Let DatabasePassword(ByVal Value As String)
-    mDatabasePassword = Value
+Public Property Let DatabasePassword(ByVal value As String)
+    mDatabasePassword = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -165,8 +165,8 @@ Public Property Get CursorLocationServer() As Boolean
     CursorLocationServer = mCursorLocationServer
 End Property
 
-Public Property Let CursorLocationServer(ByVal Value As Boolean)
-    mCursorLocationServer = Value
+Public Property Let CursorLocationServer(ByVal value As Boolean)
+    mCursorLocationServer = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -175,8 +175,8 @@ Public Property Get OpenExclusive() As Boolean
     OpenExclusive = mOpenExclusive
 End Property
 
-Public Property Let OpenExclusive(ByVal Value As Boolean)
-    mOpenExclusive = Value
+Public Property Let OpenExclusive(ByVal value As Boolean)
+    mOpenExclusive = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -185,8 +185,8 @@ Public Property Get ReadOnly() As Boolean
     ReadOnly = mReadOnly
 End Property
 
-Public Property Let ReadOnly(ByVal Value As Boolean)
-    mReadOnly = Value
+Public Property Let ReadOnly(ByVal value As Boolean)
+    mReadOnly = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -195,8 +195,8 @@ Public Property Get ReportsPath() As String
     ReportsPath = mReportsPath
 End Property
 
-Public Property Let ReportsPath(ByVal Value As String)
-    mReportsPath = Value
+Public Property Let ReportsPath(ByVal value As String)
+    mReportsPath = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -205,8 +205,8 @@ Public Property Get BackupCopiesNumber() As Long
     BackupCopiesNumber = mBackupCopiesNumber
 End Property
 
-Public Property Let BackupCopiesNumber(ByVal Value As Long)
-    mBackupCopiesNumber = Value
+Public Property Let BackupCopiesNumber(ByVal value As Long)
+    mBackupCopiesNumber = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -215,8 +215,8 @@ Public Property Get ParametersSaveToRegistry() As Boolean
     ParametersSaveToRegistry = mParametersSaveToRegistry
 End Property
 
-Public Property Let ParametersSaveToRegistry(ByVal Value As Boolean)
-    mParametersSaveToRegistry = Value
+Public Property Let ParametersSaveToRegistry(ByVal value As Boolean)
+    mParametersSaveToRegistry = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -225,8 +225,8 @@ Public Property Get CompactDays() As Long
     CompactDays = mCompactDays
 End Property
 
-Public Property Let CompactDays(ByVal Value As Long)
-    mCompactDays = Value
+Public Property Let CompactDays(ByVal value As Long)
+    mCompactDays = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -235,8 +235,8 @@ Public Property Get CompactLastDate() As Date
     CompactLastDate = mCompactLastDate
 End Property
 
-Public Property Let CompactLastDate(ByVal Value As Date)
-    mCompactLastDate = Value
+Public Property Let CompactLastDate(ByVal value As Date)
+    mCompactLastDate = value
 End Property
 
 '///////////////////////////////////////////////////////
@@ -377,29 +377,29 @@ Public Function Connect() As Long
 
     Screen.MousePointer = vbHourglass
     
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: INIT", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: INIT", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
 
     If pTrapErrors Then
         On Error GoTo ErrorHandler
     End If
     
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: Create ADODB Object", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: Create ADODB Object", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     Set mConnection = New ADODB.Connection
     
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: Setting ADODB Object Properties", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: Setting ADODB Object Properties", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     With mConnection
         .Provider = "Microsoft.Jet.OLEDB.4.0"
         .ConnectionTimeout = mConnectionTimeout
         .CommandTimeout = mCommandTimeout
         .CursorLocation = IIf(mCursorLocationServer, adUseServer, adUseClient)
         .Mode = IIf(mOpenExclusive, adModeShareExclusive, adModeShareDenyNone) Or IIf(mReadOnly, adModeRead, adModeReadWrite)
-        .Properties("Data Source").Value = mDataSource
-        .Properties("Persist Security Info").Value = False
+        .Properties("Data Source").value = mDataSource
+        .Properties("Persist Security Info").value = False
         If mDatabasePassword <> "" Then
-            .Properties("Jet OLEDB:Database Password").Value = mDatabasePassword
+            .Properties("Jet OLEDB:Database Password").value = mDatabasePassword
         End If
-        .Properties("User ID").Value = mUserID
-        .Properties("Password").Value = mPassword
+        .Properties("User ID").value = mUserID
+        .Properties("Password").value = mPassword
         .Open
         If mDatabase <> "" Then
             .DefaultDatabase = mDatabase
@@ -407,7 +407,7 @@ Public Function Connect() As Long
     End With
     
     Connect = -1
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: DONE", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     Screen.MousePointer = vbDefault
     Exit Function
     
@@ -446,7 +446,7 @@ Public Function CheckDatabase() As Boolean
     recData.Open , , , , adCmdText
     
     If Not recData.EOF Then
-        If recData("Texto").Value = DATABASE_IDENTIFIER Then
+        If recData("Texto").value = DATABASE_IDENTIFIER Then
             recData.Close
             Set recData = Nothing
             CheckDatabase = True
@@ -466,7 +466,7 @@ End Function
 Public Function Disconnect() As Boolean
 RETRY:
     If Not mConnection Is Nothing Then
-        WriteLogEvent "Closing Database Connection", vbLogEventTypeInformation
+        WriteLogEvent "Closing Database Connection", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
         Select Case mConnection.State
             Case adStateClosed
             Case adStateOpen
@@ -481,14 +481,14 @@ RETRY:
 End Function
 
 Public Function VerifyBackup() As Boolean
-    Dim FileName As String
+    Dim FILENAME As String
     Dim Path As String
     Dim PathAndFileName As String
     Dim DatabaseCompacted As Boolean
     
-    FileName = App.EXEName & "_" & Format(Date, "yyyymmdd") & ".mdb"
+    FILENAME = App.EXEName & "_" & Format(Date, "yyyymmdd") & ".mdb"
     Path = App.Path & IIf(Right(App.Path, 2) = "\", "", "\") & "Backup"
-    PathAndFileName = Path & "\" & FileName
+    PathAndFileName = Path & "\" & FILENAME
     
     If FileSystem.Dir(Path, vbDirectory) = "" Then
         'LA CARPETA BACKUP NO EXISTE, LA CREO
@@ -539,7 +539,7 @@ Public Function VerifyBackup() As Boolean
 End Function
 
 Private Function DeleteBackupOld() As Boolean
-    Dim FileName As String
+    Dim FILENAME As String
     Dim Path As String
     Dim PathAndFileName As String
     Dim FileNamesCount As Long
@@ -556,9 +556,9 @@ Private Function DeleteBackupOld() As Boolean
     Path = App.Path & IIf(Right(App.Path, 2) = "\", "", "\") & "Backup"
     
     'PRIMERO LLENO EL ARRAY CON LOS NOMBRES DE LOS ARCHIVOS
-    FileName = FileSystem.Dir(Path & "\" & App.EXEName & "_????????.mdb", vbNormal)
-    Do While FileName <> ""
-        TestDate = Mid(FileName, Len(App.EXEName) + 2, 8)
+    FILENAME = FileSystem.Dir(Path & "\" & App.EXEName & "_????????.mdb", vbNormal)
+    Do While FILENAME <> ""
+        TestDate = Mid(FILENAME, Len(App.EXEName) + 2, 8)
         If IsNumeric(TestDate) Then
             On Error Resume Next
             TestDate = CDate(Mid(TestDate, 1, 4) & "/" & Mid(TestDate, 5, 2) & "/" & Mid(TestDate, 7, 2))
@@ -569,9 +569,9 @@ Private Function DeleteBackupOld() As Boolean
             End If
             FileNamesCount = FileNamesCount + 1
             ReDim Preserve aFileNames(1 To FileNamesCount) As String
-            aFileNames(FileNamesCount) = FileName
+            aFileNames(FileNamesCount) = FILENAME
         End If
-        FileName = FileSystem.Dir
+        FILENAME = FileSystem.Dir
     Loop
     
     If FileNamesCount > mBackupCopiesNumber Then
@@ -748,7 +748,7 @@ Public Function GetFirstValueFromRecordset(ByVal SQLStatement As String, ByVal E
         
         If Not ADODBRecordset.EOF Then
             If ADODBRecordset.Fields.Count > 0 Then
-                GetFirstValueFromRecordset = ADODBRecordset.Fields(0).Value
+                GetFirstValueFromRecordset = ADODBRecordset.Fields(0).value
             End If
         End If
     End If

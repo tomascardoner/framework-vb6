@@ -31,7 +31,7 @@ Public Function Connect() As Long
     End With
     
     Connect = -1
-    CSM_ApplicationLog.WriteLogEvent "Database Connection: DONE", vbLogEventTypeInformation
+    CSM_ApplicationLog.WriteLogEvent "Database Connection: DONE", vbLogEventTypeInformation, pParametro.LogAccion_Enabled
     Screen.MousePointer = vbDefault
     Exit Function
     
