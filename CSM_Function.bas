@@ -39,6 +39,14 @@ Public Function IfIsZero_Null(ByVal CheckValue As Variant) As Variant
     IfIsZero_Null = IIf(CheckValue = 0, Null, CheckValue)
 End Function
 
+Public Function IfIsZero_Space(ByVal CheckValue As Variant) As String
+    IfIsZero_Space = IIf(CheckValue = 0, " ", CheckValue)
+End Function
+
+Public Function IfIsZero_ZeroLenghtString(ByVal CheckValue As Variant) As Variant
+    IfIsZero_ZeroLenghtString = IIf(CheckValue = 0, "", CheckValue)
+End Function
+
 Public Function IfIsTwo_Null(ByVal CheckValue As Variant) As Variant
     IfIsTwo_Null = IIf(CheckValue = 2, Null, CheckValue)
 End Function
