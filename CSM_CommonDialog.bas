@@ -257,7 +257,7 @@ End Type
 '//////////////////////////////////////////////////////////////////
 '//////////////////////////////////////////////////////////////////
 
-Public Function FileOpen(ByVal hwndOwner As Long, ByVal Title As String, ByVal Filter As String, ByVal InitialDir As String, Optional ByVal HideReadOnlyButton As Boolean = True, Optional ByVal AllowMultiSelect As Boolean = False, Optional ByVal ExplorerStyle As Boolean = True, Optional ByVal FileMustExist As Boolean = True) As String
+Public Function FileOpen(ByVal hwndOwner As Long, ByVal Title As String, ByVal Filter As String, Optional ByVal InitialDir As String = "", Optional ByVal HideReadOnlyButton As Boolean = True, Optional ByVal AllowMultiSelect As Boolean = False, Optional ByVal ExplorerStyle As Boolean = True, Optional ByVal FileMustExist As Boolean = True) As String
     Dim OpenFile As OPENFILENAME
     Dim lReturn As Long
     Dim flags As Long
