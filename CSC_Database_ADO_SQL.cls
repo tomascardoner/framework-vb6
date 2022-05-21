@@ -274,24 +274,24 @@ Public Function LoadParameters() As Boolean
     End If
 End Function
 
-Public Function LoadParametersFromRegistry() As Boolean
+Public Function LoadParametersFromRegistry(Optional SubKeyName As String = "Database") As Boolean
     Dim DES As CSC_Encryption_DES
     
-    mProvider = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "Provider", "", csrdtString)
-    mConnectionTimeout = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "ConnectionTimeout", 15, csrdtNumberInteger)
-    mCommandTimeout = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "CommandTimeout", 15, csrdtNumberInteger)
-    mPacketSize = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "PacketSize", 4096, csrdtNumberInteger)
-    mDataTypeCompatibility = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "DataTypeCompatibility", 80, csrdtNumberInteger)
-    mDataSource = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "DataSource", "", csrdtString)
-    mFailoverPartner = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "FailoverPartner", "", csrdtString)
-    mUserID = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "UserID", "", csrdtString)
-    mPassword = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "Password", "", csrdtString)
+    mProvider = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "Provider", "", csrdtString)
+    mConnectionTimeout = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "ConnectionTimeout", 15, csrdtNumberInteger)
+    mCommandTimeout = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "CommandTimeout", 15, csrdtNumberInteger)
+    mPacketSize = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "PacketSize", 4096, csrdtNumberInteger)
+    mDataTypeCompatibility = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "DataTypeCompatibility", 80, csrdtNumberInteger)
+    mDataSource = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "DataSource", "", csrdtString)
+    mFailoverPartner = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "FailoverPartner", "", csrdtString)
+    mUserID = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "UserID", "", csrdtString)
+    mPassword = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "Password", "", csrdtString)
     If mPassword <> "" Then
         Set DES = New CSC_Encryption_DES
         mPassword = DES.DecryptString(mPassword, DES.PASSWORD_ENCRYPTION_KEY)
         Set DES = Nothing
     End If
-    mDatabase = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "Name", "", csrdtString)
+    mDatabase = CSM_Registry.GetValue_FromApplication_LocalMachine(SubKeyName, "Name", "", csrdtString)
     
     mReportsPath = CSM_Registry.GetValue_FromApplication_LocalMachine("Reports", "Path", "", csrdtString)
     
@@ -302,24 +302,24 @@ Public Function LoadParametersFromRegistry() As Boolean
     LoadParametersFromRegistry = True
 End Function
 
-Public Function LoadParametersFromINI() As Boolean
+Public Function LoadParametersFromINI(Optional SubKeyName As String = "Database") As Boolean
     Dim DES As CSC_Encryption_DES
     
-    mProvider = CSM_INI.GetValue_FromApplication("Database", "Provider", "", csidtString)
-    mConnectionTimeout = CSM_INI.GetValue_FromApplication("Database", "ConnectionTimeout", 15, csidtNumberInteger)
-    mCommandTimeout = CSM_INI.GetValue_FromApplication("Database", "CommandTimeout", 15, csidtNumberInteger)
-    mPacketSize = CSM_INI.GetValue_FromApplication("Database", "PacketSize", 4096, csidtNumberInteger)
-    mDataTypeCompatibility = CSM_INI.GetValue_FromApplication("Database", "DataTypeCompatibility", 80, csidtNumberInteger)
-    mDataSource = CSM_INI.GetValue_FromApplication("Database", "DataSource", "", csidtString)
-    mFailoverPartner = CSM_INI.GetValue_FromApplication("Database", "FailoverPartner", "", csidtString)
-    mUserID = CSM_INI.GetValue_FromApplication("Database", "UserID", "", csidtString)
-    mPassword = CSM_INI.GetValue_FromApplication("Database", "Password", "", csidtString)
+    mProvider = CSM_INI.GetValue_FromApplication(SubKeyName, "Provider", "", csidtString)
+    mConnectionTimeout = CSM_INI.GetValue_FromApplication(SubKeyName, "ConnectionTimeout", 15, csidtNumberInteger)
+    mCommandTimeout = CSM_INI.GetValue_FromApplication(SubKeyName, "CommandTimeout", 15, csidtNumberInteger)
+    mPacketSize = CSM_INI.GetValue_FromApplication(SubKeyName, "PacketSize", 4096, csidtNumberInteger)
+    mDataTypeCompatibility = CSM_INI.GetValue_FromApplication(SubKeyName, "DataTypeCompatibility", 80, csidtNumberInteger)
+    mDataSource = CSM_INI.GetValue_FromApplication(SubKeyName, "DataSource", "", csidtString)
+    mFailoverPartner = CSM_INI.GetValue_FromApplication(SubKeyName, "FailoverPartner", "", csidtString)
+    mUserID = CSM_INI.GetValue_FromApplication(SubKeyName, "UserID", "", csidtString)
+    mPassword = CSM_INI.GetValue_FromApplication(SubKeyName, "Password", "", csidtString)
     If mPassword <> "" Then
         Set DES = New CSC_Encryption_DES
         mPassword = DES.DecryptString(mPassword, DES.PASSWORD_ENCRYPTION_KEY)
         Set DES = Nothing
     End If
-    mDatabase = CSM_INI.GetValue_FromApplication("Database", "Name", "", csidtString)
+    mDatabase = CSM_INI.GetValue_FromApplication(SubKeyName, "Name", "", csidtString)
     
     mReportsPath = CSM_INI.GetValue_FromApplication("Reports", "Path", "", csidtString)
     
