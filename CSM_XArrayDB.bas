@@ -13,7 +13,7 @@ Public Function ConvertADOTypeToXTYPE(ByVal ADODBDataType As ADODB.DataTypeEnum)
             ConvertADOTypeToXTYPE = XTYPE_DATE
         Case ADODB.DataTypeEnum.adDecimal, ADODB.DataTypeEnum.adDouble, ADODB.DataTypeEnum.adNumeric, ADODB.DataTypeEnum.adSingle, ADODB.DataTypeEnum.adVarNumeric
             ConvertADOTypeToXTYPE = XTYPE_DOUBLE
-        Case ADODB.DataTypeEnum.adInteger, ADODB.DataTypeEnum.adSmallInt, ADODB.DataTypeEnum.adTinyInt, ADODB.DataTypeEnum.adUnsignedBigInt, ADODB.DataTypeEnum.adUnsignedInt, ADODB.DataTypeEnum.adUnsignedSmallInt, ADODB.DataTypeEnum.adUnsignedTinyInt
+        Case ADODB.DataTypeEnum.adBigInt, ADODB.DataTypeEnum.adInteger, ADODB.DataTypeEnum.adSmallInt, ADODB.DataTypeEnum.adTinyInt, ADODB.DataTypeEnum.adUnsignedBigInt, ADODB.DataTypeEnum.adUnsignedInt, ADODB.DataTypeEnum.adUnsignedSmallInt, ADODB.DataTypeEnum.adUnsignedTinyInt
             ConvertADOTypeToXTYPE = XTYPE_INTEGER
         Case Else
             Stop
