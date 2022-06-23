@@ -9,23 +9,27 @@ Public Function IfIsNull(ByVal CheckValue As Variant, ByVal ReplacementValue As 
 End Function
 
 Public Function IfIsNull_Zero(ByVal CheckValue As Variant) As Variant
-    IfIsNull_Zero = IIf(IsNull(CheckValue), 0, CheckValue)
+    IfIsNull_Zero = IfIsNull(CheckValue, 0)
+End Function
+
+Public Function IfIsNull_MinusOne(ByVal CheckValue As Variant) As Variant
+    IfIsNull_MinusOne = IfIsNull(CheckValue, -1)
 End Function
 
 Public Function IfIsNull_Two(ByVal CheckValue As Variant) As Variant
-    IfIsNull_Two = IIf(IsNull(CheckValue), 2, CheckValue)
+    IfIsNull_Two = IfIsNull(CheckValue, 2)
 End Function
 
 Public Function IfIsNull_Space(ByVal CheckValue As Variant) As String
-    IfIsNull_Space = IIf(IsNull(CheckValue), " ", CheckValue)
+    IfIsNull_Space = IfIsNull(CheckValue, " ")
 End Function
 
 Public Function IfIsNull_ZeroLenghtString(ByVal CheckValue As Variant) As Variant
-    IfIsNull_ZeroLenghtString = IIf(IsNull(CheckValue), "", CheckValue)
+    IfIsNull_ZeroLenghtString = IfIsNull(CheckValue, "")
 End Function
 
 Public Function IfIsNull_ZeroDate(ByVal CheckValue As Variant) As Variant
-    IfIsNull_ZeroDate = IIf(IsNull(CheckValue), CSM_Constant.DATE_TIME_FIELD_NULL_VALUE, CheckValue)
+    IfIsNull_ZeroDate = IfIsNull(CheckValue, CSM_Constant.DATE_TIME_FIELD_NULL_VALUE)
 End Function
 
 '================================================================================================================
@@ -49,6 +53,10 @@ End Function
 
 Public Function IfIsTwo_Null(ByVal CheckValue As Variant) As Variant
     IfIsTwo_Null = IIf(CheckValue = 2, Null, CheckValue)
+End Function
+
+Public Function IfIsMinusOne_Null(ByVal CheckValue As Variant) As Variant
+    IfIsMinusOne_Null = IIf(CheckValue = -1, Null, CheckValue)
 End Function
 
 Public Function IfIsZeroLenghtString_Null(ByVal CheckValue As String, Optional TrimValue As Boolean = True) As Variant
