@@ -11,7 +11,7 @@ Public Sub ShowErrorMessage(ByVal vstrSource As String, Optional ByVal vstrMessa
     Screen.MousePointer = vbDefault
         
     If vblnShowMessageBox Then
-        MsgBox vstrMessage, vbOKOnly + vbExclamation, App.Title
+        MsgBox vstrMessage & vbCrLf & vbCrLf & "Error: " & Err.Number & " - " & Err.Description, vbOKOnly + vbExclamation, App.Title
     Else
         strPrompt = "Se ha encontrado un Error inesperado."
         strPrompt = strPrompt & vbCr & "Anote la siguiente información e informela al servicio técnico."
