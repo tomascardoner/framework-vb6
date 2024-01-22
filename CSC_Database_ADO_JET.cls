@@ -254,7 +254,7 @@ Public Function LoadParametersFromRegistry() As Boolean
     Dim CValuesNames As Collection
     Dim CValuesTypes As Collection
     Dim CValues As Collection
-    Dim Index As Integer
+    Dim index As Integer
     
     mProvider = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "Provider", "", csrdtString)
     mConnectionTimeout = CSM_Registry.GetValue_FromApplication_LocalMachine("Database", "ConnectionTimeout", 30, csrdtNumberInteger)
@@ -273,10 +273,10 @@ Public Function LoadParametersFromRegistry() As Boolean
             mCDataSources.Add CValues(1)
             mDataSource = CValues(1)
         Case Else
-            For Index = 1 To CValuesNames.Count
-                mCDataSourcesNames.Add Trim(Replace(Mid(CValuesNames(Index), Len("DataSource") + 1), "_", " "))
-                mCDataSources.Add CValues(Index)
-            Next Index
+            For index = 1 To CValuesNames.Count
+                mCDataSourcesNames.Add Trim(Replace(Mid(CValuesNames(index), Len("DataSource") + 1), "_", " "))
+                mCDataSources.Add CValues(index)
+            Next index
     End Select
     Set CValuesNames = Nothing
     Set CValuesTypes = Nothing
@@ -481,14 +481,19 @@ RETRY:
 End Function
 
 Public Function VerifyBackup() As Boolean
-    Dim FILENAME As String
+    Dim FileName As String
     Dim Path As String
     Dim PathAndFileName As String
     Dim DatabaseCompacted As Boolean
     
-    FILENAME = App.EXEName & "_" & Format(Date, "yyyymmdd") & ".mdb"
+    If mBackupCopiesNumber = 0 Then
+        VerifyBackup = True
+        Exit Function
+    End If
+    
+    FileName = App.EXEName & "_" & Format(Date, "yyyymmdd") & ".mdb"
     Path = App.Path & IIf(Right(App.Path, 2) = "\", "", "\") & "Backup"
-    PathAndFileName = Path & "\" & FILENAME
+    PathAndFileName = Path & "\" & FileName
     
     If FileSystem.Dir(Path, vbDirectory) = "" Then
         'LA CARPETA BACKUP NO EXISTE, LA CREO
@@ -539,12 +544,12 @@ Public Function VerifyBackup() As Boolean
 End Function
 
 Private Function DeleteBackupOld() As Boolean
-    Dim FILENAME As String
+    Dim FileName As String
     Dim Path As String
     Dim PathAndFileName As String
     Dim FileNamesCount As Long
     Dim aFileNames() As String
-    Dim Index As Long
+    Dim index As Long
     Dim TestDate As String
     
     Screen.MousePointer = vbHourglass
@@ -556,9 +561,9 @@ Private Function DeleteBackupOld() As Boolean
     Path = App.Path & IIf(Right(App.Path, 2) = "\", "", "\") & "Backup"
     
     'PRIMERO LLENO EL ARRAY CON LOS NOMBRES DE LOS ARCHIVOS
-    FILENAME = FileSystem.Dir(Path & "\" & App.EXEName & "_????????.mdb", vbNormal)
-    Do While FILENAME <> ""
-        TestDate = Mid(FILENAME, Len(App.EXEName) + 2, 8)
+    FileName = FileSystem.Dir(Path & "\" & App.EXEName & "_????????.mdb", vbNormal)
+    Do While FileName <> ""
+        TestDate = Mid(FileName, Len(App.EXEName) + 2, 8)
         If IsNumeric(TestDate) Then
             On Error Resume Next
             TestDate = CDate(Mid(TestDate, 1, 4) & "/" & Mid(TestDate, 5, 2) & "/" & Mid(TestDate, 7, 2))
@@ -569,9 +574,9 @@ Private Function DeleteBackupOld() As Boolean
             End If
             FileNamesCount = FileNamesCount + 1
             ReDim Preserve aFileNames(1 To FileNamesCount) As String
-            aFileNames(FileNamesCount) = FILENAME
+            aFileNames(FileNamesCount) = FileName
         End If
-        FILENAME = FileSystem.Dir
+        FileName = FileSystem.Dir
     Loop
     
     If FileNamesCount > mBackupCopiesNumber Then
@@ -579,12 +584,12 @@ Private Function DeleteBackupOld() As Boolean
         'ORDENO EL ARRAY
         Call CSM_Sort.Sort_ArrayString_QuickSort(aFileNames(), 1, FileNamesCount)
         'ELIMINO LOS MAS VIEJOS
-        For Index = 1 To FileNamesCount - mBackupCopiesNumber
-            PathAndFileName = Path & "\" & aFileNames(Index)
+        For index = 1 To FileNamesCount - mBackupCopiesNumber
+            PathAndFileName = Path & "\" & aFileNames(index)
             On Error Resume Next
             FileSystem.Kill PathAndFileName
             On Error GoTo 0
-        Next Index
+        Next index
     End If
     
     Screen.MousePointer = vbDefault
