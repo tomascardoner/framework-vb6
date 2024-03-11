@@ -193,7 +193,7 @@ End Property
 '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 Public Function OpenReport(ByVal IsSQLServer As Boolean) As Boolean
-    Dim ErrorMessage As String
+    Dim errorMessage As String
     
     Dim ParameterCurrent As CSC_ReportParameter
     Dim ParameterFieldDefinition As CRAXDRT.ParameterFieldDefinition
@@ -217,11 +217,11 @@ Public Function OpenReport(ByVal IsSQLServer As Boolean) As Boolean
     
     'Start the Application if its the first time
     If pCRAXDRTApplication Is Nothing Then
-        ErrorMessage = "Ha ocurrido un error al inciar una nueva sesión de Crystal Reports."
+        errorMessage = "Ha ocurrido un error al inciar una nueva sesión de Crystal Reports."
         Set pCRAXDRTApplication = New CRAXDRT.Application
     End If
     
-    ErrorMessage = "Error al abrir el Reporte." & vbCr & vbCr & "FileName: " & mFileName
+    errorMessage = "Error al abrir el Reporte." & vbCr & vbCr & "FileName: " & mFileName
     Set mCRAXDRTReport = pCRAXDRTApplication.OpenReport(mFileName, crOpenReportByDefault)
     
     With mCRAXDRTReport
@@ -255,11 +255,11 @@ Public Function OpenReport(ByVal IsSQLServer As Boolean) As Boolean
         '//////////////////////////////////////////////////////
         'SET DATABASE INFO
         If Not Recordset Is Nothing Then
-            ErrorMessage = "Error al asignar el recordset al Reporte."
+            errorMessage = "Error al asignar el recordset al Reporte."
             Call .Database.SetDataSource(mRecordset)
         Else
             For Each DatabaseTable In Report.Database.Tables
-                ErrorMessage = "Error al asignar la base de datos a la Tabla '" & DatabaseTable.Name & "' del Reporte."
+                errorMessage = "Error al asignar la base de datos a la Tabla '" & DatabaseTable.Name & "' del Reporte."
                 DatabaseTable.ConnectionProperties("Provider").Value = pDatabase.Provider
                 DatabaseTable.ConnectionProperties("Data Source").Value = pDatabase.DataSource
                 If IsSQLServer Then
@@ -278,7 +278,7 @@ Public Function OpenReport(ByVal IsSQLServer As Boolean) As Boolean
                     If ReportObject.Kind = crSubreportObject Then
                         Set SubReportObject = ReportObject
                         For Each DatabaseTable In SubReportObject.OpenSubreport.Database.Tables
-                            ErrorMessage = "Error al asignar la base de datos a la Tabla '" & DatabaseTable.Name & "' del Sub-Reporte '" & SubReportObject.Name & "'."
+                            errorMessage = "Error al asignar la base de datos a la Tabla '" & DatabaseTable.Name & "' del Sub-Reporte '" & SubReportObject.Name & "'."
                             'DatabaseTable.ConnectionProperties("Provider").Value = pParametro.Report_Provider
                             DatabaseTable.ConnectionProperties("Data Source").Value = pDatabase.DataSource
                             If IsSQLServer Then
@@ -301,8 +301,8 @@ Public Function OpenReport(ByVal IsSQLServer As Boolean) As Boolean
         For Each ParameterCurrent In mCParameters
             If IsNull(ParameterCurrent.ParameterValue) Or IsEmpty(ParameterCurrent.ParameterValue) Then
             Else
-                ErrorMessage = "Error al definir el Parámetro del Reporte." & vbCr & vbCr & "Parametro: " & ParameterCurrent.ParameterName
-                Set ParameterFieldDefinition = mCRAXDRTReport.ParameterFields.GetItemByName(ParameterCurrent.ParameterName)
+                errorMessage = "Error al definir el Parámetro del Reporte." & vbCr & vbCr & "Parametro: " & ParameterCurrent.ParameterName
+                Set ParameterFieldDefinition = mCRAXDRTReport.ParameterFields.GetItemByName("@" & ParameterCurrent.ParameterName)
                 With ParameterFieldDefinition
                     Select Case .ValueType
                         Case crInt8sField, crInt8uField, crInt16sField, crInt16uField, crInt32sField, crInt32uField, crNumberField
@@ -342,13 +342,13 @@ Public Function OpenReport(ByVal IsSQLServer As Boolean) As Boolean
     Exit Function
     
 ErrorHandler:
-    ShowErrorMessage "Classes.CSC_Report.OpenReport", ErrorMessage
+    ShowErrorMessage "Classes.CSC_Report.OpenReport", errorMessage
 End Function
 
 Public Function PreviewReport(ByVal promptUser As Boolean) As Boolean
     Dim ReportViewer As CSF_ReportViewer
     Dim FormLoaded As Boolean
-    Dim ErrorMessage As String
+    Dim errorMessage As String
     
     If pTrapErrors Then
         On Error GoTo ErrorHandler
@@ -357,13 +357,13 @@ Public Function PreviewReport(ByVal promptUser As Boolean) As Boolean
     Screen.MousePointer = vbHourglass
     DoEvents
     
-    ErrorMessage = "Error al abrir una nueva sesión del Visor de Reportes."
+    errorMessage = "Error al abrir una nueva sesión del Visor de Reportes."
     Set ReportViewer = New CSF_ReportViewer
     Load ReportViewer
     FormLoaded = True
     With ReportViewer.CRViewer
         .DisplayGroupTree = mDisplayGroupTree
-        ErrorMessage = "Error al abrir el Reporte."
+        errorMessage = "Error al abrir el Reporte."
         .ReportSource = mCRAXDRTReport
         If promptUser Then
             Call mCRAXDRTReport.PrinterSetupEx(mParentForm_hWnd)
@@ -379,7 +379,7 @@ Public Function PreviewReport(ByVal promptUser As Boolean) As Boolean
     Exit Function
     
 ErrorHandler:
-    ShowErrorMessage "Classes.CSC_Report.PreviewReport", ErrorMessage
+    ShowErrorMessage "Classes.CSC_Report.PreviewReport", errorMessage
     If FormLoaded Then
         Unload ReportViewer
         Set ReportViewer = Nothing
