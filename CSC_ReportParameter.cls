@@ -186,7 +186,7 @@ Public Property Let ParameterValue(ByVal Value As Variant)
                 mParameterDisplayValue = WeekdayName(mParameterValue)
             End If
         Case csrpdtMonth
-            If mParameterDisplayValue = "" Then
+            If mParameterDisplayValue = "" And Not IsEmpty(mParameterValue) Then
                 mParameterDisplayValue = MonthName(mParameterValue)
             End If
         Case csrpdtYear

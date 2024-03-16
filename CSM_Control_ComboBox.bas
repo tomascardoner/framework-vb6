@@ -103,7 +103,7 @@ Public Function FillFromCommand(ByRef ComboBox As VB.ComboBox, ByRef command As 
             If ComboBox.ListCount > 0 Then
                 ComboBox.ListIndex = ComboBox.ListCount - 1
             End If
-        Case cscpItemOrNone, cscpItemOrfirst, cscpItemOrFirstIfUnique, cscpItemOrFirstIfUniqueIgnoringPreloaded, cscpItemOrLast
+        Case cscpItemOrNone, cscpItemOrFirst, cscpItemOrFirstIfUnique, cscpItemOrFirstIfUniqueIgnoringPreloaded, cscpItemOrLast
             ComboBox.ListIndex = GetListIndexByItemData(ComboBox, ItemValue, ItemPosition, PreloadedItemCount)
         Case cscpCurrentOrNone, cscpCurrentOrFirst, cscpCurrentOrFirstIfUnique, cscpCurrentOrFirstIfUniqueIgnoringPreloaded, cscpCurrentOrLast
             ComboBox.ListIndex = GetListIndexByItemData(ComboBox, CurrentValue, ItemPosition, PreloadedItemCount)
@@ -160,7 +160,7 @@ Public Function FillFromDelimitedString(ByRef ComboBox As VB.ComboBox, ByVal Del
             If ComboBox.ListCount > 0 Then
                 ComboBox.ListIndex = ComboBox.ListCount - 1
             End If
-        Case cscpItemOrNone, cscpItemOrfirst, cscpItemOrFirstIfUnique, cscpItemOrFirstIfUniqueIgnoringPreloaded, cscpItemOrLast
+        Case cscpItemOrNone, cscpItemOrFirst, cscpItemOrFirstIfUnique, cscpItemOrFirstIfUniqueIgnoringPreloaded, cscpItemOrLast
             ComboBox.ListIndex = GetListIndexByItemData(ComboBox, ItemValue, ItemPosition, PreloadedItemCount)
         Case cscpCurrentOrNone, cscpCurrentOrFirst, cscpCurrentOrFirstIfUnique, cscpCurrentOrFirstIfUniqueIgnoringPreloaded, cscpCurrentOrLast
             ComboBox.ListIndex = GetListIndexByItemData(ComboBox, CurrentValue, ItemPosition, PreloadedItemCount)
@@ -214,7 +214,7 @@ Public Function FillFromCollection(ByRef ComboBox As VB.ComboBox, ByRef Collecti
             If ComboBox.ListCount > 0 Then
                 ComboBox.ListIndex = ComboBox.ListCount - 1
             End If
-        Case cscpItemOrNone, cscpItemOrfirst, cscpItemOrFirstIfUnique, cscpItemOrFirstIfUniqueIgnoringPreloaded, cscpItemOrLast
+        Case cscpItemOrNone, cscpItemOrFirst, cscpItemOrFirstIfUnique, cscpItemOrFirstIfUniqueIgnoringPreloaded, cscpItemOrLast
             ComboBox.ListIndex = GetListIndexByItemData(ComboBox, ItemValue, ItemPosition, PreloadedItemCount)
         Case cscpCurrentOrNone, cscpCurrentOrFirst, cscpCurrentOrFirstIfUnique, cscpCurrentOrFirstIfUniqueIgnoringPreloaded, cscpCurrentOrLast
             ComboBox.ListIndex = GetListIndexByItemData(ComboBox, CurrentValue, ItemPosition, PreloadedItemCount)
@@ -259,7 +259,7 @@ Public Function GetListIndexByText(ByRef ComboBox As VB.ComboBox, ByVal TextValu
     Select Case ItemPosition
         Case cscpItemOrNone
             GetListIndexByText = -1
-        Case cscpItemOrfirst
+        Case cscpItemOrFirst
             If ComboBox.ListCount > 0 Then
                 GetListIndexByText = 0
             Else
@@ -285,7 +285,7 @@ Public Function GetListIndexByItemData(ByRef ComboBox As VB.ComboBox, ByVal Item
     Select Case ItemPosition
         Case cscpItemOrNone, cscpCurrentOrNone
             GetListIndexByItemData = -1
-        Case cscpItemOrfirst, cscpCurrentOrFirst
+        Case cscpItemOrFirst, cscpCurrentOrFirst
             If ComboBox.ListCount = 0 Then
                 GetListIndexByItemData = -1 'No hay items, por lo tanto devuelvo -1 (ninguno)
             Else
@@ -377,7 +377,7 @@ Public Function AndCollection_FillFromCommand(ByRef ComboBox As VB.ComboBox, ByR
             If ComboBox.ListCount > 0 Then
                 ComboBox.ListIndex = ComboBox.ListCount - 1
             End If
-        Case cscpItemOrNone, cscpItemOrfirst, cscpItemOrLast
+        Case cscpItemOrNone, cscpItemOrFirst, cscpItemOrLast
             ComboBox.ListIndex = CSM_Control_ComboBox.GetListIndexByItemData(ComboBox, ItemValue, ItemPosition)
     End Select
     
@@ -405,7 +405,7 @@ Public Function AndCollection_GetListIndexByCollectionItem(ByRef ComboBox As VB.
     Select Case ItemPosition
         Case cscpItemOrNone
             AndCollection_GetListIndexByCollectionItem = -1
-        Case cscpItemOrfirst
+        Case cscpItemOrFirst
             If ComboBox.ListCount > 0 Then
                 AndCollection_GetListIndexByCollectionItem = 0
             Else
