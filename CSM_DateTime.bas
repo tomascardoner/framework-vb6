@@ -51,6 +51,18 @@ Public Function GetLastDateOfPreviousMonthFromDate(ByVal DateValue As Date) As D
     GetLastDateOfPreviousMonthFromDate = GetLastDateOfMonthFromDate(DateAdd("m", -1, DateValue))
 End Function
 
+Public Function GetYearMonthDateStringByComma(value As Date) As String
+    GetYearMonthDateStringByComma = Year(value) & ", " & Month(value) & ", " & Day(value)
+End Function
+
+Public Function GetYearMonthDateAndInitOfDayStringByComma(value As Date) As String
+    GetYearMonthDateAndInitOfDayStringByComma = Year(value) & ", " & Month(value) & ", " & Day(value) & ", 0, 0, 0, 0"
+End Function
+
+Public Function GetYearMonthDateAndEndOfDayStringByComma(value As Date) As String
+    GetYearMonthDateAndEndOfDayStringByComma = Year(value) & ", " & Month(value) & ", " & Day(value) & ", 23, 59, 59, 99"
+End Function
+
 Public Function IsLeapYear(ByVal Year As Integer) As Boolean
     'SIMPLEST METHOD
     IsLeapYear = (Day(DateAdd("d", -1, DateSerial(Year, 3, 1))) = 29)
