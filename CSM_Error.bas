@@ -27,6 +27,6 @@ Public Sub ShowErrorMessage(ByVal vstrSource As String, Optional ByVal vstrMessa
         strPrompt = strPrompt & vbCr & vbCr & "Error " & Err.Number & ": " & Err.Description & vbCr & vbCr & Err.Source
         strToLog = strToLog & " // VB Error: " & Err.Number & " - " & Err.Description & " // Context: " & Err.Source
                 
-        CSM_ApplicationLog.WriteLogEvent strToLog, vbLogEventTypeError, pParametro.LogAccion_Enabled
+        CSM_ApplicationLog.WriteLogEvent strToLog, vbLogEventTypeError, pLogEnabled
     End If
 End Sub
